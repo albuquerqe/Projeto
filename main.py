@@ -68,3 +68,33 @@ except pygame.error:
 
 white = (255,255,255)
 black = (0,0,0)
+
+rodando = True
+while rodando:  
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            salvar_marcacoes(estrela)
+            pygame.quit()
+            sys.exit()
+        elif evento.type == pygame.MOUSEBUTTONUP:
+            pos = pygame.mouse.get_pos()
+            item = simpledialog.askstring("Space","Nome da estrela:")
+            if item is None:
+                item = "desconhecido" + str(pos)
+            estrela[item] = pos     
+        elif evento.type == pygame.KEYUP:
+            if evento.key == pygame.K_F10:
+                salvar_marcacoes(estrela)
+                print("Marcacoes salvas")
+            elif evento.key == pygame.K_F11:
+                estrela = carregar_marcacoes()
+                print("Marcacoes carregadas")
+            elif evento.key == pygame.K_F12:
+                excluir_marcacoes()
+                estrela = {}
+                print("Marcacoes excluidas") 
+            elif evento.key == pygame.K_ESCAPE:
+                salvar_marcacoes(estrela)     
+                pygame.quit()    
+                sys.exit()   
+    gameDisplay.blit(fundo,(0,0))
