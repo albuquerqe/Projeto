@@ -24,5 +24,26 @@ except pygame.error:
 
 icone_path = "space.png"
 icone = pygame.image.load(icone_path)
-pygame.display.set_icon(icone)  
+pygame.display.set_icon(icone) 
+
+try: 
+    pygame.mixer.music.load("Space_Machine.mp3")
+    pygame.mixer.music.play(-1)
+except pygame.error:
+    print("Erro no audio")
+
+icone_path = "space.png"
+icone = pygame.image.load(icone_path)
+pygame.display.set_icon(icone) 
+
+icone_path = "space.png"
+icone = pygame.image.load(icone_path)
+pygame.display.set_icon(icone)    
+
+save_file = "marcacoes.pickle"
+
+def salvar_marcacoes(marcacoes):
+    with open(save_file, "wb") as file:
+        pickle.dump(marcacoes, file)
+
 
