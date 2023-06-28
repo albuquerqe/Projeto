@@ -1,6 +1,6 @@
 import cx_Freeze
 executables =[
-    cx_Freeze.Executable(script="main.py", icon="space.ico")
+    cx_Freeze.Executable(script="main.py", icon="space_1_ico")
 ]
 cx_Freeze.setup(
     name = "Proje",
@@ -15,3 +15,4 @@ cx_Freeze.setup(
 
 #py geraSetup.py build
 #py geraSetup.py bdist_msi
+
