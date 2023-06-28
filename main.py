@@ -45,5 +45,26 @@ save_file = "marcacoes.pickle"
 def salvar_marcacoes(marcacoes):
     with open(save_file, "wb") as file:
         pickle.dump(marcacoes, file)
+def carregar_marcacoes():
+    if os.path.exists(save_file):
+        with open(save_file, "rb") as file:
+            return pickle.load(file)
+    else:
+        return {}
+def excluir_marcacoes():
+    if os.path.exists(save_file):
+        os.remove(save_file)
 
+estrela = carregar_marcacoes()
+fonte = pygame.font.Font(None, 24)
 
+try:
+    fundo = pygame.image.load("bg.jpg")
+    fundo = pygame.transform.scale(fundo, tamanho)
+    fundo = fundo.convert()
+except pygame.error:
+    fundo = pygame.Surface(tamanho)
+    fundo.fill((0,0,0))
+
+white = (255,255,255)
+black = (0,0,0)
