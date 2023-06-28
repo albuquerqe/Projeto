@@ -98,3 +98,22 @@ while rodando:
                 pygame.quit()    
                 sys.exit()   
     gameDisplay.blit(fundo,(0,0))
+
+    for nome, posicao in estrela.items():
+        pygame.draw.circle(gameDisplay, white, posicao, 10)
+        texto = fonte.render(nome, True, white)
+        gameDisplay.blit(texto, (posicao[0] + 15, posicao[1] - 10))
+    pontos = list(estrela.values())  
+    if len(pontos) >=2:
+        for i in range(len(pontos)-1):
+            pygame.draw.line(gameDisplay, white, pontos[i], pontos[i + 1], 2)   
+            
+    texto_salvar = fonte.render("Pressione F10 para salvar", True, white)
+    texto_carregar = fonte.render("Pressione F11 para carregar", True, white)
+    texto_excluir = fonte.render("Pressione F12 para excluir", True, white)
+    gameDisplay.blit(texto_salvar, (10,10))
+    gameDisplay.blit(texto_carregar, (10, 40))
+    gameDisplay.blit(texto_excluir, (10, 70))
+    pygame.display.update()
+
+pygame.quit()        
