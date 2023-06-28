@@ -10,7 +10,6 @@ pygame.init()
 largura = 800
 altura = 500
 tamanho = (largura, altura)
-tela = pygame.display.set_mode(tamanho)
 pygame.display.set_caption("SPACE MARKER DA ANA e Luiz")
 gameDisplay = pygame.display.set_mode(tamanho)
 meteoroSound = pygame.mixer.Sound("Space_Machine.mp3")
@@ -24,20 +23,6 @@ except pygame.error:
 
 icone_path = "space.png"
 icone = pygame.image.load(icone_path)
-pygame.display.set_icon(icone) 
-
-try: 
-    pygame.mixer.music.load("Space_Machine.mp3")
-    pygame.mixer.music.play(-1)
-except pygame.error:
-    print("Erro no audio")
-
-icone_path = "space.png"
-icone = pygame.image.load(icone_path)
-pygame.display.set_icon(icone) 
-
-icone_path = "space.png"
-icone = pygame.image.load(icone_path)
 pygame.display.set_icon(icone)    
 
 save_file = "marcacoes.pickle"
@@ -45,17 +30,20 @@ save_file = "marcacoes.pickle"
 def salvar_marcacoes(marcacoes):
     with open(save_file, "wb") as file:
         pickle.dump(marcacoes, file)
+
 def carregar_marcacoes():
     if os.path.exists(save_file):
         with open(save_file, "rb") as file:
             return pickle.load(file)
     else:
         return {}
+    
 def excluir_marcacoes():
     if os.path.exists(save_file):
         os.remove(save_file)
 
 estrela = carregar_marcacoes()
+
 fonte = pygame.font.Font(None, 24)
 
 try:
@@ -98,3 +86,22 @@ while rodando:
                 pygame.quit()    
                 sys.exit()   
     gameDisplay.blit(fundo,(0,0))
+
+    for nome, posicao in estrela.items():
+        pygame.draw.circle(gameDisplay, white, posicao, 10)
+        texto = fonte.render(nome, True, white)
+        gameDisplay.blit(texto, (posicao[0] + 15, posicao[1] - 10))
+    pontos = list(estrela.values())  
+    if len(pontos) >=2:
+        for i in range(len(pontos)-1):
+            pygame.draw.line(gameDisplay, white, pontos[i], pontos[i + 1], 2)   
+
+    texto_salvar = fonte.render("Pressione F10 para salvar", True, white)
+    texto_carregar = fonte.render("Pressione F11 para carregar", True, white)
+    texto_excluir = fonte.render("Pressione F12 para excluir", True, white)
+    gameDisplay.blit(texto_salvar, (10,10))
+    gameDisplay.blit(texto_carregar, (10, 40))
+    gameDisplay.blit(texto_excluir, (10, 70))
+    pygame.display.update()
+
+pygame.quit()        
