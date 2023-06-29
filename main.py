@@ -83,7 +83,8 @@ while rodando:
             estrela = {}
             print("Marcacoes excluidas") 
         elif keys[pygame.K_ESCAPE]:
-            salvar_marcacoes(estrela)     
+            salvar_marcacoes(estrela)
+            gameDisplay.blit(fundo,(0,0))     
             pygame.quit()    
             sys.exit()   
     gameDisplay.blit(fundo,(0,0))

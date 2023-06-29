@@ -1,14 +1,15 @@
 import cx_Freeze
 executables =[
-    cx_Freeze.Executable(script="main.py", icon="space_1_ico")
+    cx_Freeze.Executable(script="main.py", icon="space.ico")
 ]
 cx_Freeze.setup(
-    name = "Proje",
+    name = "SPACE MARKER",
     options={
         "build_exe":{
+            "packages":["pygame"],
             "include_files":["space.png",
-                            "Space_Machine_Power.mp3",
-                            "space.png"]
+                            "Space_Machine_.mp3",
+                            "bg.jpg"]
         }
     }, executables = executables
 )
