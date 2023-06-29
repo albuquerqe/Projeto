@@ -8,7 +8,7 @@ cx_Freeze.setup(
         "build_exe":{
             "packages":["pygame"],
             "include_files":["space.png",
-                            "Space_Machine.mp3",
+                            "Space_Machine_Power.mp3",
                             "bg.jpg"]
         }
     }, executables = executables
