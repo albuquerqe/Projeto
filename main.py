@@ -89,7 +89,7 @@ while rodando:
     gameDisplay.blit(fundo,(0,0))
 
     for nome, posicao in estrela.items():
-        pygame.draw.circle(gameDisplay, white, posicao, 10)
+        pygame.draw.circle(gameDisplay, white, posicao, 5)
         texto = fonte.render(nome, True, white)
         gameDisplay.blit(texto, (posicao[0] + 15, posicao[1] - 10))
     pontos = list(estrela.values())  
